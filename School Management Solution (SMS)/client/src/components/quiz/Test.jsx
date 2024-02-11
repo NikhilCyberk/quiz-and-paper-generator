@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Test.css";
 import { resultInitialState } from "../../../quiz";
 import axios from "axios";
@@ -10,6 +10,40 @@ export default function Test({ questions }) {
     const [answer, setanswer] = useState(null);
     const [result, setResult] = useState(resultInitialState);
     const [showResult, setShowResult] = useState(false);
+
+    // ////////////////////////////////////////////////////////////////////////////////////
+
+    // const [quizzes, setQuizzes] = useState([]);
+
+    // useEffect(() => {
+    //     axios.get("http://localhost:5000/home")
+    //         .then((response => setQuizzes(response.data)))
+    //         .catch((error) => console.log(error));
+    //     console.log(setQuizzes);
+
+    // }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
     const { question, choices, correctAnswer } = questions[currentQuestion];
 

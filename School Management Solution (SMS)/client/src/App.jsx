@@ -14,9 +14,9 @@ function App() {
   return (
     <>
       <Home />
-      <Test questions={quiz.questions} />
+      {/* <Test questions={quiz.questions} /> */}
       {/* <QuizInstruction /> */}
-      {/* <Demo/> */}
+      <Demo/>
 
 
     </>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Test from "./components/quiz/Test";
+
 
 const Demo = () => {
     const [quizzes, setQuizzes] = useState([]);
@@ -21,7 +23,9 @@ const Demo = () => {
                     <p>Total Questions: {quiz.totalQuestions}</p>
                     <p>Per Question Score: {quiz.perQuestionScore}</p>
                     <ul>
-                        {quiz.questions.map((question) => (
+
+                        <Test questions={quiz.questions} />
+                        {/* {quiz.questions.map((question) => (
                             <li key={question._id}>
                                 <p>{question.question}</p>
                                 <ul>
@@ -32,7 +36,7 @@ const Demo = () => {
                                 <p>Type: {question.type}</p>
                                 <p>Correct Answer: {question.correctAnswer}</p>
                             </li>
-                        ))}
+                        ))} */}
                     </ul>
                 </div>
             ))}
