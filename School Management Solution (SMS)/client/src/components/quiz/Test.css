@@ -1,0 +1,104 @@
+body {
+    font-family: monospace;
+    background: linear-gradient(0deg, #b700ff 0.03%, #c10080 100%);
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 30px;
+    height: 100vh;
+}
+
+.quiz-container {
+    width: 500px;
+    background: #ffffff;
+    border-radius: 4px;
+    margin-top: 100px;
+    padding: 30px 60px;
+    box-sizing: border-box;
+
+    .active-question-no {
+        font-size: 32px;
+        font-weight: 500;
+        color: #b700ff;
+    }
+
+    .total-question {
+        font-size: 16px;
+        font-weight: 500;
+        color: #68626b;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    ul {
+        margin-top: 20px;
+        margin-left: -40px;
+
+        li {
+            text-decoration: none;
+            list-style: none;
+            color: #2a0072;
+            font-size: 16px;
+            background: #ffffff;
+            border: 1px solid #68626b;
+            border-radius: 16px;
+            padding: 11px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .selected-answer {
+            background: #b700ff;
+            border: 1px solid #c10080;
+            color: #ffffff;
+        }
+    }
+
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    button {
+        background: linear-gradient(0deg, #b700ff 0.03%, #c10080);
+        border-radius: 9px;
+        font-size: 18px;
+        color: #ffffff;
+        padding: 10px 42px;
+        outline: none;
+        border: none;
+        margin-top: 15px;
+        cursor: pointer;
+
+        &:disabled {
+            background: #bcb2b2;
+            color: #5c5c5c;
+            cursor: not-allowed;
+        }
+    }
+
+    .result {
+        text-align: center;
+
+        h3 {
+            font-size: 24px;
+            letter-spacing: 1.4px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: 500;
+
+            span {
+                color: #2a0072;
+                font-size: 22px;
+            }
+        }
+    }
+}
