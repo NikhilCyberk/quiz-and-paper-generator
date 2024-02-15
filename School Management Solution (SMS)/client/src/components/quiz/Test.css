@@ -6,11 +6,23 @@ body {
     justify-content: center;
     margin: 0 auto;
     padding: 0 30px;
-    height: 100vh;
+    height: 1000vh;
+}
+
+.right-column {
+    flex: 4;
+    /* Take up remaining space in the row */
+    margin-left: 30px;
+    /* Adjust the margin as needed */
 }
 
 .quiz-container {
-    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    /* Separate into two columns */
+    align-items: flex-start;
+    /* Align items to the top */
+    width: 80rem;
     background: #ffffff;
     border-radius: 4px;
     margin-top: 100px;
@@ -23,34 +35,26 @@ body {
         color: #b700ff;
     }
 
+    .question-container {
+        flex: 1;
+        /* Styles for the left column */
+    }
+
     .total-question {
         font-size: 16px;
         font-weight: 500;
         color: #68626b;
     }
 
-    h2 {
+    .mcqs-question {
         font-size: 20px;
         font-weight: 500;
         margin: 0;
     }
 
-    ul {
+    .mcqs-container {
         margin-top: 20px;
         margin-left: -40px;
-
-        li {
-            text-decoration: none;
-            list-style: none;
-            color: #2a0072;
-            font-size: 16px;
-            background: #ffffff;
-            border: 1px solid #68626b;
-            border-radius: 16px;
-            padding: 11px;
-            margin-top: 15px;
-            cursor: pointer;
-        }
 
         .selected-answer {
             background: #b700ff;
@@ -59,12 +63,26 @@ body {
         }
     }
 
-    .footer {
+    .mcqs-container li {
+        text-decoration: none;
+        list-style: none;
+        color: #2a0072;
+        font-size: 16px;
+        background: #ffffff;
+        border: 1px solid #68626b;
+        border-radius: 16px;
+        padding: 11px;
+        margin-top: 15px;
+        cursor: pointer;
+
+    }
+
+    .next-finish-btn {
         display: flex;
         justify-content: flex-end;
     }
 
-    button {
+    .next-finish-btn button {
         background: linear-gradient(0deg, #b700ff 0.03%, #c10080);
         border-radius: 9px;
         font-size: 18px;
@@ -83,6 +101,7 @@ body {
     }
 
     .result {
+
         text-align: center;
 
         h3 {

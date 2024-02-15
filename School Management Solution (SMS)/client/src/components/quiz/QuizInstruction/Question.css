@@ -1,0 +1,37 @@
+.question_button_container {
+    border: 2px solid #fff;
+    border-radius: .2rem;
+    font-family: monospace;
+    background: #fff;
+    color: #000000;
+    padding: 0 30px;
+    margin: auto;
+    position: relative;
+
+}
+
+.question_button_container ul {
+    margin-bottom: 1rem;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+
+}
+
+.question_button_container button {
+
+    background-color: transparent;
+    border: 1px solid green;
+    border-radius: 9px;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    color: #0baa75;
+    font-weight: 600;
+    line-height: 1;
+
+
+}

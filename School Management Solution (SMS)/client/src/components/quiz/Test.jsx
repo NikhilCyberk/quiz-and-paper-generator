@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./Test.css";
 import { resultInitialState } from "../../../quiz";
 import axios from "axios";
+import Question from "./QuizInstruction/Question";
 
 
 export default function Test({ questions }) {
@@ -10,41 +11,6 @@ export default function Test({ questions }) {
     const [answer, setanswer] = useState(null);
     const [result, setResult] = useState(resultInitialState);
     const [showResult, setShowResult] = useState(false);
-
-    // ////////////////////////////////////////////////////////////////////////////////////
-
-    // const [quizzes, setQuizzes] = useState([]);
-
-    // useEffect(() => {
-    //     axios.get("http://localhost:5000/home")
-    //         .then((response => setQuizzes(response.data)))
-    //         .catch((error) => console.log(error));
-    //     console.log(setQuizzes);
-
-    // }, []);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // ////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
     const { question, choices, correctAnswer } = questions[currentQuestion];
 
     const onAnswerClick = (answer, index) => {
@@ -83,42 +49,55 @@ export default function Test({ questions }) {
     }
     // console.log({ question });
 
+    const handleButtonClick = (questionIndex) => {
+        setcurrentQuestion(questionIndex - 1);
+        setanswerIdx(null); // Reset answer index when switching questions
+    };
+
     return (
-        <div className="quiz-container">
+        <>
 
-            {!showResult ? (<>
-                <span className="active-question-no">{currentQuestion + 1}</span>
-                <span className="total-question">/{questions.length}</span>
+            <div className="quiz-container">
+                {!showResult ? (<>
+                    <div className="right-column">
+                        <div className="question-details">
+                            <span className="active-question-no">{currentQuestion + 1}</span>
+                            <span className="total-question">/{questions.length}</span>
+                            <h2 className="mcqs-question">{question}</h2>
+                            <ul className="mcqs-container">
+                                {choices.map((choice, index) => (
+                                    <li
+                                        onClick={() => onAnswerClick(choice, index)}
+                                        key={choice}
+                                        className={answerIdx === index ? "selected-answer" : null}
+                                    >
+                                        {choice}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="next-finish-btn">
+                                <button onClick={onClickNext} disabled={answerIdx === null}>
+                                    {currentQuestion === questions.length - 1 ? "Finish" : "Next"}
+                                </button>
+                            </div>
+                        </div>
 
-                <h2>{question}</h2>
-
-                <ul>
-                    {choices.map((choice, index) => (
-                        <li
-                            onClick={() => onAnswerClick(choice, index)}
-                            key={choice}
-                            className={answerIdx === index ? "selected-answer" : null}
-                        >
-                            {choice}
-                        </li>
-                    ))}
-                </ul>
-                <div className="footer">
-                    <button onClick={onClickNext} disabled={answerIdx === null}>
-                        {currentQuestion === questions.length - 1 ? "Finish" : "Next"}
-                    </button>
+                    </div>
+                    <div className="question-container">
+                        <Question handleButtonClick={handleButtonClick} questions={questions} />
+                    </div>
+                </>
+                ) : <div className="result">
+                    <h3>Result</h3>
+                    <p>Total Question:<span>{questions.length}</span></p>
+                    <p>Total Score:<span>{result.score}</span></p>
+                    <p>Correct Answers: <span>{result.correctAnswer}</span></p>
+                    <p>Wrong Answers:  <span> {result.wrongAnswer}</span></p>
+                    <button onClick={onTryAgain}>Try Button</button>
                 </div>
-            </>
-            ) : <div className="result">
-                <h3>Result</h3>
-                <p>Total Question:<span>{questions.length}</span></p>
-                <p>Total Score:<span>{result.score}</span></p>
-                <p>Correct Answers: <span>{result.correctAnswer}</span></p>
-                <p>Wrong Answers:  <span> {result.wrongAnswer}</span></p>
-                <button onClick={onTryAgain}>Try Button</button>
-            </div>
-            }
+                }
 
-        </div>
+            </div >
+        </>
     );
 }
