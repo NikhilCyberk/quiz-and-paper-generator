@@ -1,19 +1,13 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const adminSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
     email: {
         type: String,
         unique: true,
         required: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
+    }, //pasport will automatically add username and password
     role: {
         type: String,
         default: "Admin"
@@ -24,5 +18,8 @@ const adminSchema = new mongoose.Schema({
         required: true
     }
 });
+
+// this add username and password AND provide hashing and salting
+adminSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("admin", adminSchema)

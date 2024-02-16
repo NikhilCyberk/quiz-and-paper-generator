@@ -14,11 +14,27 @@ import Student from './pages/Student/Student';
 import Teacher from './pages/Teacher/Teacher';
 import AdminSignup from './pages/Admin/AdminSignup';
 
+import { useSelector } from 'react-redux';
+import AdminDashboard from './pages/Admin/AdminDashboard';
+
 
 function App() {
 
-
-
+  const RoleBasedRoute = ({ path, element }) => {
+    const userRole = useSelector(state => state.user.role);
+  
+    // Conditionally render components based on user's role
+    if (userRole === 'Admin' && path === '/admin') {
+      return <Route path={path} element={element} />;
+    } else if (userRole === 'Student' && path === '/student') {
+      return <Route path={path} element={element} />;
+    } else if (userRole === 'Teacher' && path === '/teacher') {
+      return <Route path={path} element={element} />;
+    } else {
+      // If the user's role doesn't match any of the specified routes, navigate to a default route or show an error page.
+      return <Navigate to="/" />;
+    }
+  };
   return (
     <>
 
@@ -26,10 +42,13 @@ function App() {
 
         <Route path='/' element={<Homepage />} />
         <Route path='/chooseuser' element={<ChooseUser />} />
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin' element={<Admin role="Admin" />} />
+        <Route path='/student' element={<Student role="Student" />} />
+        <Route path='/teacher' element={<Teacher role="Teacher" />} />
+
         <Route path='/admin/signup' element={<AdminSignup />} />
-        <Route path='/student' element={<Student />} />
-        <Route path='/teacher' element={<Teacher />} />
+        <Route path='*' element={<Navigate to="/" />} />
+      
 
       </Routes>
 
